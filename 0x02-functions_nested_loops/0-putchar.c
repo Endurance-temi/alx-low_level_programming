@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * main - prints _putchar
+ * main - Entry point
  * is written by Endurance
- * Return 0 (Success)
+ * Return: 0 (Success)
  */
 
 int main(void)
