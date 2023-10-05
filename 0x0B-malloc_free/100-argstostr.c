@@ -31,7 +31,23 @@ char *argstostr(int ac, char **av)
 	{
 		return (NULL);
 	}
-	for (i = 0; i < ac; i++)
-		;
-	return (NULL);
+
+
+	i = 0;
+
+	for (arg = 0; arg < ac; arg++)
+
+	{
+		for (subarg = 0; av[arg][subarg]; subarg++)
+
+		{
+			mystr[i++] = av[arg][subarg];
+		}
+
+		mystr[i++] = '\n';
+	}
+
+	mystr[size] = '\0';
+
+	return (mystr);
 }
