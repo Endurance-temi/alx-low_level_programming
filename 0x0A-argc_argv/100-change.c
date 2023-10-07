@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
 
 /**
  * main - prints the minimum numver of coins
@@ -8,12 +7,14 @@
  * @argc: number of arguments
  * @argv: array of arguments
  *
- * return: 0 (Success), 1 (Error)
+ * Return: 1 if error, 0 otherwise
  */
 int main(int argc, char *argv[])
 {
-	int num, j, result;
-	int coins[] = {25, 10, 5, 2, 1};
+	int change, input;
+	unsigned int x;
+	char *p;
+	int coins[] = {25, 10, 5, 2};
 
 	if (argc != 2)
 	{
@@ -21,23 +22,31 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	num = atoi(argv[1]);
-	result = 0;
+	input = strtol(argv[1], &p, 10);
+	change = 0;
 
-	if (num < 0)
+	if (!*p)
 	{
-		printf("0\n");
-		return (0);
-	}
-
-	for (j = 0; j < 5 && num >= 0; j++)
-	{
-		while (num >= coins[j])
+		while (input > 1)
 		{
-			result++;
-			num -= coins[j];
+			for (x = 0; x < sizeof(coins[x]); x++)
+			{
+				if (input >= coins[x])
+				{
+					change += input / coins[x];
+					input %= coins[x];
+				}
+			}
 		}
+		if (input == 1)
+			change++;
 	}
-	printf("%d\n", result);
+	else
+	{
+		printf("Error\n");
+		return (1);
+	}
+
+	printf("%d\n", change);
 	return (0);
 }
