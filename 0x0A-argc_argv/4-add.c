@@ -1,38 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
 /**
  * main - prints the name of the program
  * @argc: Count arguments
  * @argv: Arguments
- *
  * Return: if not recieve 2 arg, return error
  */
 int main(int argc, char *argv[])
 {
-	int x;
-	int y;
-	int add;
+	int i, j, add = 0;
 
-	(void)argv;
-	add = 0;
-	if (argc > 1)
+	for (i = 1; i < argc; i++)
 	{
-		for (x = 1; x < argc; x++)
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			for (y = 1; y < argc; y++)
+			if (!isdigit(argv[i][j]))
 			{
-				if (!isdigit(argv[x][y]))
-				{
-					printf("Error\n");
-					return (1);
-				}
+				printf("Error\n");
+				return (1);
 			}
-		add += atoi(argv[x]);
 		}
+		add += atoi(argv[i]);
 	}
-
 	printf("%d\n", add);
 	return (0);
 }
