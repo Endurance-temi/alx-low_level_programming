@@ -4,23 +4,26 @@
 
 /**
  * print_numbers: func that print numbers, followed by a new line.
- * @n: Type unsigned int number of int passed to a function
  * @seperator: type char pointer string to be printed  between numbers.
- * Return: 0
+ * @n: The number of integers passed to the function.
+ * ...: variable number of numbers to be printed.
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list valist;
-	int x = n;
+	va_list nums;
+	unsigned int index;
 
-	if (separator == NULL)
-		separator = "";
+	  va_start(nums, n);
 
-	va_start(valist, n);
-	if (x--)
-		printf("%d", va_arg(valist, int));
-	while (x-- > 0)
-		printf("%s%d", separator, va_arg(valist, int));
-	printf("\n");
-	va_end(valist);
+for (index = 0; index < n; index++)
+{
+printf("%d", va_arg(nums, int));
+
+if (index != (n - 1) && separator != NULL)
+printf("%s", separator);
+}
+
+printf("\n");
+
+va_end(nums);
 }
